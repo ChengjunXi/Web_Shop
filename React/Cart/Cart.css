@@ -1,0 +1,18 @@
+.CartView{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+div>.product{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    height: 200px;
+    background-color: cadetblue;
+}
+
+.subtotal{
+    text-align: right;
+}
