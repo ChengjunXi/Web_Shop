@@ -1,0 +1,28 @@
+form{
+    width: 600px;
+    height: 800px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+label {
+    display: inline-block;
+    width: 90px;
+}
+
+form div{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+#OrderView.sub{
+    justify-content: right;
+}
+
+button[name='order']{
+    background-color: yellow;
+    font-size: 200%;
+    width: 200%;
+}

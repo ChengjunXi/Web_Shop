@@ -16,3 +16,14 @@ div>.product{
 .subtotal{
     text-align: right;
 }
+
+.checkout{
+    display: flex;
+    justify-content: right;
+}
+
+a[name='checkout']{
+    background-color: yellow;
+    border-color: black;
+    border-style: solid;
+}

@@ -1,0 +1,11 @@
+.PaymentView{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+button[name='pay']{
+    background-color: yellow;
+    font-size: 150%;
+    width: 50%;
+}

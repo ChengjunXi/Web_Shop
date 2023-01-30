@@ -49,7 +49,7 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
         }
         else {
             let newP = {}
-            newP[id]=count
+            newP[id] = count
             localStorage.setItem("product_count", JSON.stringify(newP))
         }
     }, [id,count,memoStoredCount]);
@@ -79,13 +79,14 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
                                     setSub(sub+data.price)
                                 }}> + </button>
                         </div>
-                        :<button onClick={()=>setCount(count+1)}>Add to cart</button>
+                            : <button onClick={() => { setCount(count + 1); setSub(sub + data.price) }}>Add to cart</button>
                         }
                     </div>
                 </div>
             );
     }
     else {
-        return null;
+        // return null;
+        return <p> No data </p>
     }
   }
