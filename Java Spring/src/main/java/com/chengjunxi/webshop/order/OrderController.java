@@ -46,7 +46,7 @@ class OrderController {
 		}
 
 		//Payment Process
-		Stripe.apiKey = "sk_test_51MUg0aLEfiemJbGLKOvfzPQGmhw5ATLkAFcLwI9BMJETaolW7X1wcQNm334jWbRbAVgT97CimFIpxKyBaXI4HOEH00qZp3qnzW";
+		Stripe.apiKey = "";
 		PaymentIntentCreateParams params =
 		PaymentIntentCreateParams
 			.builder()

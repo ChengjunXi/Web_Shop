@@ -21,7 +21,7 @@ public class StripeController {
 
     @PostMapping("/webhook")
     void PostEvent(@RequestHeader("Stripe-Signature") String sigHeader, @RequestBody String payload) throws StripeException {
-        String endpointSecret = "whsec_95232a2e6138642cb57bad75bae22c5d24854fa3aeae1062ef62387ffe12538c";
+        String endpointSecret = "";
         Event event;
 
         event = Webhook.constructEvent(
