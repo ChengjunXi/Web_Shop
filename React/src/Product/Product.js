@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./Product.css"
 
@@ -9,7 +9,8 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
         product_name: null,
         price: null,
         descri: null,
-        stock: null
+        stock: null,
+        // category: null
     });
 
     // Stored amount
@@ -22,12 +23,11 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
         initial=0
     }
     const [count, setCount] = useState(initial)
-    
-    const memoStoredCount=useMemo(()=>storedCount,[storedCount])
 
     // Image
     const [img, setImg] = useState()
     useEffect(() => {
+        console.log('Query: http://127.0.0.1:8080/product_img/' + id)
         fetch('http://127.0.0.1:8080/product_img/' + id)
             .then(x => x.blob())
             .then(x => URL.createObjectURL(x))
@@ -36,6 +36,7 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
 
     // Product data
     useEffect(() => {
+        console.log('Query: http://127.0.0.1:8080/products/' + id)
         fetch('http://127.0.0.1:8080/products/'+id)
             .then(x => x.json())
             .then(setData);
@@ -43,16 +44,16 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
     
     // Stored amount
     useEffect(() => {
-        if (memoStoredCount) {
-            memoStoredCount[id] = count
-            localStorage.setItem("product_count", JSON.stringify(memoStoredCount))
+        if (storedCount) {
+            storedCount[id] = count
+            localStorage.setItem("product_count", JSON.stringify(storedCount))
         }
         else {
             let newP = {}
             newP[id] = count
             localStorage.setItem("product_count", JSON.stringify(newP))
         }
-    }, [id,count,memoStoredCount]);
+    }, [id,count,storedCount]);
 
     // Render
     if (data) {
@@ -68,7 +69,7 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
                     <div>{data.descri}</div>
                     <div>
                         {count
-                        ?<div>
+                            ? <div>
                                 <button onClick={() => {
                                     setCount(count - 1);
                                     setSub(sub-data.price)
@@ -78,7 +79,7 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
                                     setCount(count + 1);
                                     setSub(sub+data.price)
                                 }}> + </button>
-                        </div>
+                            </div>
                             : <button onClick={() => { setCount(count + 1); setSub(sub + data.price) }}>Add to cart</button>
                         }
                     </div>

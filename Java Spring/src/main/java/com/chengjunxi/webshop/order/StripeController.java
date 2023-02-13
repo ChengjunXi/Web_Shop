@@ -1,5 +1,6 @@
 package com.chengjunxi.webshop.order;
 
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.stripe.exception.StripeException;
@@ -13,15 +14,19 @@ import com.stripe.model.EventDataObjectDeserializer;
 @RestController
 @RequestMapping("/stripe")
 public class StripeController {
-	private final OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
+    // @Autowired
+    // private final MailNotification mailNotification;
+    
 	public StripeController(OrderRepository orderRepository) {
-		this.orderRepository = orderRepository;
+        this.orderRepository = orderRepository;
+        // this.mailNotification = mailNotification;
 	}
 
     @PostMapping("/webhook")
-    void PostEvent(@RequestHeader("Stripe-Signature") String sigHeader, @RequestBody String payload) throws StripeException {
-        String endpointSecret = "";
+    void PostEvent(@RequestHeader("Stripe-Signature") String sigHeader, @RequestBody String payload) throws StripeException, InterruptedException{
+        String endpointSecret = "whsec_95232a2e6138642cb57bad75bae22c5d24854fa3aeae1062ef62387ffe12538c";
         Event event;
 
         event = Webhook.constructEvent(
@@ -42,9 +47,12 @@ public class StripeController {
         switch (event.getType()) {
             case "payment_intent.succeeded": {
                 PaymentIntent paymentIntent = (PaymentIntent) stripeObject;
-                Order order = orderRepository.findByStripe(paymentIntent.getClientSecret());
-                order.setPaid(true);
-                orderRepository.save(order);
+                if (paymentIntent != null) {
+                    Order order = orderRepository.findByStripe(paymentIntent.getClientSecret());
+                    order.setPaid(true);
+                    orderRepository.save(order);
+                }
+                // mailNotification.sendNotificaitoin(order.getEmail());
                 break;
             }
             // ... handle other event types

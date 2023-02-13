@@ -8,21 +8,30 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
+import java.util.List;
+import java.util.ArrayList;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","http://127.0.0.1:3000"})
 @RequestMapping("/products")
 class ProductController {
 	private final ProductRepository productRepository;
+	private final CategoryRepository categoryRepository;
 
-	public ProductController(ProductRepository productRepository) {
+	public ProductController(ProductRepository productRepository, CategoryRepository categoryRepository) {
 		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
 	}
 
-	@GetMapping
-	Iterable<Product> getProducts() {
-		return productRepository.findAll();
+	@GetMapping("/by_category/{category}")
+	List<Integer> getProductIdsByCategory(@PathVariable String category) {
+		List<Product> products = productRepository.findAllByCategory(category);
+		List<Integer> ids = new ArrayList<>();
+		for (Product product : products) {
+			ids.add(product.getId());
+		}
+		return ids;
 	}
 
 	@GetMapping("/{id}")
@@ -33,6 +42,11 @@ class ProductController {
 	@GetMapping("/meta/num_products")
 	Long getProductCount() {
 		return productRepository.count();
+	}
+
+	@GetMapping("/meta/category_list")
+	List<Category> getCategoryList() {
+		return categoryRepository.findAll();
 	}
 
 	@PostMapping
@@ -56,7 +70,7 @@ class ProductController {
 }
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","http://127.0.0.1:3000"})
 @RequestMapping("/product_img")
 class ProductImgController {
 	@GetMapping("/{id}")

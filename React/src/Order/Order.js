@@ -5,7 +5,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Payment from './Payment'
 
-const stripePromise = loadStripe('');
+const stripePromise = loadStripe('pk_test_51MUg0aLEfiemJbGLYXl7m1fFVCuyag8CEo4LM2cLD6sAVO1ILNFmwvuBXk54EJC0kQLhKiuPnUlJk6Gk4Ge7Jzpt00wp81wFis');
 
 export default function Order() {
     const [firstName, setFirstName] = useState()

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Column;
 // import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -15,15 +16,12 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="products")
-public class Product {
+@Table(name="categories")
+public class Category {
     @Id
     // @GeneratedValue
     private int id;
 
-    private String product_name;
-    private double price;
-    private String descri;
-    private int stock;
-    private String category;
+    @Column(name="category_name")
+    private String categoryName;
 }

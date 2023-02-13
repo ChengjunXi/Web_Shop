@@ -9,7 +9,7 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","http://127.0.0.1:3000"})
 @RequestMapping("/order")
 class OrderController {
 	private final OrderRepository orderRepository;
@@ -46,7 +46,7 @@ class OrderController {
 		}
 
 		//Payment Process
-		Stripe.apiKey = "";
+		Stripe.apiKey = "sk_test_51MUg0aLEfiemJbGLKOvfzPQGmhw5ATLkAFcLwI9BMJETaolW7X1wcQNm334jWbRbAVgT97CimFIpxKyBaXI4HOEH00qZp3qnzW";
 		PaymentIntentCreateParams params =
 		PaymentIntentCreateParams
 			.builder()
