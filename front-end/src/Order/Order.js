@@ -24,7 +24,8 @@ export default function Order() {
                 order_items.push({product_id:key,amount:stored[key]})
             }
 
-            let response = await fetch('http://127.0.0.1:8080/order', {
+            // let response = await fetch('http://127.0.0.1:8080/order', {
+            let response = await fetch('http://Webshop-env.eba-jmyxmqhv.us-west-2.elasticbeanstalk.com/order', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

@@ -15,7 +15,8 @@ export default function HomePage() {
 
     useEffect(() => {
         async function fetchData() {
-            await fetch('http://127.0.0.1:8080/products/meta/category_list')
+            // await fetch('http://127.0.0.1:8080/products/meta/category_list')
+            await fetch('http://Webshop-env.eba-jmyxmqhv.us-west-2.elasticbeanstalk.com/products/meta/category_list')
                 .then(x => x.json())
                 .then(x => x.map(obj => obj.categoryName))
                 .then(x => x.join(' '))
@@ -24,7 +25,8 @@ export default function HomePage() {
                 setCurCategory(categoryList[0])
             }
             else {
-                await fetch('http://127.0.0.1:8080/products/by_category/' + curCategory)
+                // await fetch('http://127.0.0.1:8080/products/by_category/' + curCategory)
+                await fetch('http://Webshop-env.eba-jmyxmqhv.us-west-2.elasticbeanstalk.com/products/by_category/' + curCategory)
                 .then(x=>x.json())
                 .then(setCurProductIds)
                 setNumPages(Math.ceil(curProductIds.length / productsPerPage))

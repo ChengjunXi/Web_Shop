@@ -11,9 +11,10 @@ export default function Cart() {
             let sum = 0
             for (let key in stored) {
                 if ((+stored[key]) !== 0) {
-                    sum += await fetch('http://127.0.0.1:8080/products/' + key)
-                                    .then(x => x.json())
-                                    .then(x => (+stored[key]) * x.price)
+                    // sum += await fetch('http://127.0.0.1:8080/products/' + key)
+                    sum += await fetch('http://Webshop-env.eba-jmyxmqhv.us-west-2.elasticbeanstalk.com/products/' + key)
+                            .then(x => x.json())
+                            .then(x => (+stored[key]) * x.price)
                 }
             }
             setSub(sum)

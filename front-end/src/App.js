@@ -6,7 +6,6 @@ import Cart from "./Cart/Cart";
 import Order from "./Order/Order";
 import OrderSuccess from "./Order/OrderSuccess";
 
-
 function App() {
   return (
       <div>

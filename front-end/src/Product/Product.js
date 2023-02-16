@@ -27,8 +27,8 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
     // Image
     const [img, setImg] = useState()
     useEffect(() => {
-        console.log('Query: http://127.0.0.1:8080/product_img/' + id)
-        fetch('http://127.0.0.1:8080/product_img/' + id)
+        // fetch('http://127.0.0.1:8080/product_img/' + id)
+        fetch('http://Webshop-env.eba-jmyxmqhv.us-west-2.elasticbeanstalk.com/product_img/' + id)
             .then(x => x.blob())
             .then(x => URL.createObjectURL(x))
             .then(setImg)
@@ -36,8 +36,8 @@ export default function Product({ id, sub=null, setSub=f=>f}) {
 
     // Product data
     useEffect(() => {
-        console.log('Query: http://127.0.0.1:8080/products/' + id)
-        fetch('http://127.0.0.1:8080/products/'+id)
+        // fetch('http://127.0.0.1:8080/products/'+id)
+        fetch('http://Webshop-env.eba-jmyxmqhv.us-west-2.elasticbeanstalk.com/products/'+id)
             .then(x => x.json())
             .then(setData);
     }, [id]);
