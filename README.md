@@ -40,6 +40,9 @@ An online shopping web application written with React.js, Java Spring and MySQL 
 ## User register
 ![image](https://github.com/ChengjunXi/Web_Shop/assets/93487110/d7fd7c69-9e5e-4e6f-91dc-4a053719c28a)
 
+## Database record
+![image](https://github.com/ChengjunXi/Web_Shop/assets/93487110/ebb5b9f1-c4e2-4495-9542-f6e9a4f25a0e)
+
 ## User login
 ![image](https://github.com/ChengjunXi/Web_Shop/assets/93487110/718c66be-cde6-40ef-a543-ee449ed33572)
 
